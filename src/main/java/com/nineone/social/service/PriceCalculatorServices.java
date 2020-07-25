@@ -22,7 +22,7 @@ public class PriceCalculatorServices {
 	
 	@Autowired
 	Bicycle bicycle;
-	
+
 	@Autowired
 	Frame frame;
 	
@@ -37,6 +37,9 @@ public class PriceCalculatorServices {
 	
 	@Autowired
 	HandleBar handleBar;
+	
+	@Autowired
+	BicyclePrice bicyclePrice;
 	
 	public Integer calculatePrice(Map<String, Object> requestBody) {
 		frame.setFrameType((String) requestBody.get("frameType"));
@@ -66,8 +69,7 @@ public class PriceCalculatorServices {
 			e.printStackTrace();
 		}
 		System.out.println(dateOfPurchase);
-				
-		return 0;
+		
+		return bicyclePrice.calculatePrice(bicycle, dateOfPurchase);
 	}
-
 }
